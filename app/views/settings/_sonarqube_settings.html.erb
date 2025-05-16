@@ -1,0 +1,29 @@
+
+<%= form_tag(update_sonarqube_settings_path, method: 'post') do %>
+  <p>
+    <label for="settings_sonarqube_url"><%= l(:field_sonarqube_url) %></label>
+    <%= text_field_tag 'settings[sonarqube_url]', @settings[:sonarqube_url], size: 60, required: true %>
+    <em class="info">https://sonarqube.yourcompany.com</em>
+  </p>
+  <p>
+    <label for="settings_sonarqube_token"><%= l(:field_sonarqube_token) %></label>
+    <%= password_field_tag 'settings[sonarqube_token]', @settings[:sonarqube_token], size: 60, required: true %>
+    <em class="info">Token API SonarQube</em>
+  </p>
+  <p>
+    <label for="settings_sonarqube_secret"><%= l(:field_sonarqube_secret) %></label>
+    <%= password_field_tag 'settings[sonarqube_secret]', @settings[:sonarqube_secret], size: 60,required: true %>
+    <em class="info">Secret Webhook SonarQube</em>
+    </p>
+  <p>
+    <label for="settings_default_tracker_id"><%= l(:field_default_tracker) %></label>
+    <%= select_tag 'settings[default_tracker_id]', options_from_collection_for_select(Tracker.sorted, 'id', 'name', @settings[:default_tracker_id]),required: true %>
+  </p> 
+  <p>
+    <label for="settings_tracked_severities"><%= l(:field_tracked_severity)%></label>
+    <%= text_field_tag 'settings[tracked_severities]', @settings[:tracked_severities], size:60%>
+    <em class="info">BLOCKER,CRITICAL,MAJOR,MINOR,INFO</em>
+  </p>
+  
+  <%= submit_tag l(:button_save) %>
+  <% end %>

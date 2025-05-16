@@ -1,0 +1,13 @@
+---
+it:
+  field_sonarqube_url: "URL SonarQube"
+  field_sonarqube_token: "Token API SonarQube"
+  field_tracked_severity: "Severity da tracciare"
+  field_default_tracker: "Tracker predefinito"
+  notice_successful_update: "Aggiornamento completato"
+  button_save: "Salva"
+  field_sonarqube_secret: "SonarQube Webhook Secret"
+
+  
+
+  

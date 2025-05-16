@@ -1,3 +1,13 @@
-# English strings go here for Rails i18n
+---
 en:
-  # my_label: "My label"
+  field_sonarqube_url: "SonarQube URL"
+  field_sonarqube_token: "SonarQube API TOKEN"
+  field_tracked_severity: "Tracked Severity"
+  field_default_tracker: "Default Tracker"
+  notice_successful_update: "Successful Update"
+  button_save: "Save"
+  field_sonarqube_secret: "SonarQube Webhook Secret"
+
+  
+
+  

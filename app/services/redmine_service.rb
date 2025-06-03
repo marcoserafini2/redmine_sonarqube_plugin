@@ -3,11 +3,24 @@ class RedmineService
   def create_redmine_issue(issue, project_key, default_tracker_id)
     begin
     # Retrieve project based on SonarQube project key
-    project = Project.find_by(identifier: project_key)
+    project = Project.find_by(name: project_key)
     if project.blank?
       Rails.logger.error("Project not found in Redmine with key: #{project_key}")
-      return
+      project = Project.new(
+        name: project_key,
+        identifier: project_key.parameterize,
+        description: "Project created for SonarQube integration",
+        is_public: true,
+        status: Project::STATUS_ACTIVE
+      )
+      if project.save
+        Rails.logger.info("Project successfully created in Redmine: #{project.name}")
+      else
+        Rails.logger.error("Error creating project in Redmine: #{project.errors.full_messages}")
     end
+  else
+    Rails.logger.info("Project already exists: #{project_key}")
+  end
     
     # Check if author is present in the payload
     author_login = issue['author']

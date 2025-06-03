@@ -5,11 +5,11 @@ class SonarqubeSettingsController < ApplicationController
   def settings
     if request.post?
       settings = params[:settings] || {}
-      Setting.plugin_sonarqube_plugin = settings
+      Setting.plugin_redmine_sonarqube_plugin = settings
       flash[:notice] = l(:notice_successful_update)
       redirect_to plugin_settings_path(id: 'sonarqube_plugin')
     else
-      @settings = Setting.plugin_sonarqube_plugin || {}
+      @settings = Setting.plugin_redmine_sonarqube_plugin || {}
     end
   end
   

@@ -26,7 +26,7 @@ class WebhookControllerController < ApplicationController
     end
 
     secret = @settings['sonarqube_secret']
-    if sonar_secret.blank?
+    if secret.blank?
       Rails.logger.error("Missing SonarQube secret webhook")
       return
     end
@@ -37,7 +37,6 @@ class WebhookControllerController < ApplicationController
     # Compare the received signature with the expected one.
     unless ActiveSupport::SecurityUtils.secure_compare(expected_signature, received_signature)
       Rails.logger.error("Invalid signature")
-      puts("Invalid signature")
       render json: { message: "Invalid signature" }, status: :unauthorized
       return
     end
@@ -77,6 +76,6 @@ class WebhookControllerController < ApplicationController
   end
 end
   def set_data
-    @settings = Setting.plugin_sonarqube_plugin || {}
+    @settings = Setting.plugin_redmine_sonarqube_plugin || {}
   end
 end

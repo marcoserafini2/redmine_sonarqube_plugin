@@ -5,7 +5,7 @@ require 'uri'
 class SonarService
   def search_sonar_issues(project_key)
     # Retrieving values ​​from entered parameters
-    settings = Setting.plugin_sonarqube_plugin || {}
+    settings = Setting.plugin_redmine_sonarqube_plugin || {}
     sonar_url = settings['sonarqube_url'] + "/api/issues/search?"
     sonar_token = settings['sonarqube_token']
     default_tracker_id = settings['default_tracker_id']

@@ -1,4 +1,4 @@
-Redmine::Plugin.register :sonarqube_plugin do
+Redmine::Plugin.register :redmine_sonarqube_plugin do
   name 'SonarQube Plugin '
   author 'Marco Serafini'
   description 'Redmine Plugin for SonarQube Webhooks & Issue Sync'

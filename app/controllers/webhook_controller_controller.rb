@@ -18,11 +18,24 @@ class WebhookControllerController < ApplicationController
     project_key = payload.dig("project","key")
     Rails.logger.info("project key: #{project_key}")
 
-    # If the payload does not contain the project key, terminate
-    if project_key.blank?
-      Rails.logger.error("No project key found in payload")
-      render json: { message: "Project not found" }, status: :unprocessable_entity
-      return
+    project = Project.find_by(name: project_key)
+
+    if project.blank?
+      Rails.logger.error("Project not found in Redmine with key: #{project_key}")
+      project = Project.new(
+        name: project_key,
+        identifier: project_key.parameterize,
+        description: "Project created for SonarQube integration",
+        is_public: true,
+        status: Project::STATUS_ACTIVE
+      )
+      if project.save
+        Rails.logger.info("Project successfully created in Redmine: #{project.name}")
+      else
+        Rails.logger.error("Error creating project in Redmine: #{project.errors.full_messages}")
+      end
+    else
+      Rails.logger.info("Project already exists: #{project_key}")
     end
 
     secret = @settings['sonarqube_secret']

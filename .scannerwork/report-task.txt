@@ -1,6 +1,0 @@
-projectKey=github-plugin
-serverUrl=http://localhost:9000
-serverVersion=25.4.0.105899
-dashboardUrl=http://localhost:9000/dashboard?id=github-plugin
-ceTaskId=6d368a47-0036-4034-8101-f562245d4615
-ceTaskUrl=http://localhost:9000/api/ce/task?id=6d368a47-0036-4034-8101-f562245d4615
